@@ -200,11 +200,11 @@
                     <form action="" method="POST">
                         <div class="field-con">
                             <label for="email">Email: </label>
-                            <input type="email" id="email" name="usr-email" />
+                            <input type="email" id="email" name="usr-email" required="required" autofocus />
                         </div>
                         <div class="field-con">
                             <label for="passkey">Password: </label>
-                            <input type="passwork" id="passkey" name="usr-passkey" />
+                            <input type="password" id="passkey" name="usr-passkey" required="required" />
                         </div>
 
                         <div class="flex form-btn-con">
