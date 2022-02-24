@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,6 +166,10 @@
             font-size:14px;     
         }
 
+        strong {
+            font-weight: 500;
+        }
+
         @media screen and (max-width:576px){
             .flex.form-btn-con {
             flex-direction: column;
@@ -263,7 +269,42 @@
 
                 else{
                     $('.signin-status').fadeOut();  
-                    alert('Ok');
+                    var data = {
+                        email : $('#email').val(),
+                        pass : $('#passkey').val(),
+                        rem : document.querySelector('#rem-me').checked==true? true:false
+                    };                    
+
+                    data = JSON.stringify(data);
+
+                    $('#status-desc').append('<div class="er"><strong>Please Wait </strong> Signing In...</div>');
+                    $('.signin-status').css('background-color', 'orange');
+                    $('.signin-status').fadeIn();   
+
+                    // sending data 
+                    $.post('helpers/sign-in.php',
+                        {form_data: data}, function(d,s,xhr){
+                            $('#status-desc').html("");
+                            let sts = JSON.parse(d);
+                            if(sts.status!= 'success'){
+                                $('.signin-status').fadeOut();
+                                $('#status-desc').append('<div class="er"><strong>Failed </strong>'+ sts.desc +'</div>');
+                                $('.signin-status').css('background-color', '#dc3545');
+                                $('.signin-status').fadeIn(); 
+                            }
+
+                            else{
+                                //if success
+                                $('.signin-status').fadeOut();
+                                $('#status-desc').append('<div class="er"><strong>Success </strong>'+ sts.desc +'</div>');
+                                $('.signin-status').css('background-color', '#4BB543');
+                                $('.signin-status').fadeIn(); 
+                                setTimeout(()=>{
+                                    window.location.href="dashboard.php";
+                                }, 2000)
+                            }
+
+                        });
                 }
 
                 
