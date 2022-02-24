@@ -14,7 +14,7 @@ define('PATH', '/'); // root
 function set_sign_cookie(){
     $val = substr(hash("sha256", SHA1(rand(1,10000))),0, 40);
     setcookie(NAME, $val, EXP_TIME, PATH);
-    return strlen($val);
+    return $val;
 }
 
 
