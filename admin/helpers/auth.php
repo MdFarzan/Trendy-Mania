@@ -45,16 +45,16 @@ function check_auth(){
 
     }
 
-    
-    // check is admin
-    function is_admin(){
-        if($_SESSION['ADMIN_SIGN'] == true)
-            return true;
-        
-        else
-            return false;
-    }
+}
 
+    
+// check is admin
+function is_admin(){
+    if(isset($_SESSION['ADMIN_SIGN']) && $_SESSION['ADMIN_SIGN'] == true)
+        return true;
+    
+    else
+        return false;
 }
 
 
