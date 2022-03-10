@@ -1,4 +1,17 @@
+<?php
 
+require_once 'helpers/auth.php';
+require_once('../common/db/connection.php');
+require_once('../common/helper/cookie_helper.php');
+require_once('../common/helper/session_helper.php');
+require_once('../common/helper/db_method_helper.php');
+
+
+
+// checking is this member?
+check_auth();
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
